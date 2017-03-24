@@ -59,7 +59,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	TCut c_energyWindow202 = "E[0] > 150 && E[0] < 250 && E[1] > 150 && E[1] < 250";
 	TCut c_energyWindow307 = "E[0] > 250 && E[0] < 350 && E[1] > 250 && E[1] < 350";
 	
-	TCanvas* c1 = new TCanvas("c1", "c1", 1500, 1000);
+	TCanvas* c1 = new TCanvas("c1", "c1", 1800, 1000);
 	c1->Divide(5,3);
 	c1->cd(1);
 	TGraph* gRateBoard1 = GetGraph(&ch, "RateBoard1 : Evt", c_base, kRed);
@@ -68,6 +68,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	TGraph* gRateBoard4 = GetGraph(&ch, "RateBoard4 : Evt", c_base, kMagenta);
 	TGraph* gRateBoard5 = GetGraph(&ch, "RateBoard5 : Evt", c_base, kYellow);
 	TGraph* gRateBoard6 = GetGraph(&ch, "RateBoard6 : Evt", c_base, kOrange);
+	TGraph* gRateBoardsRight = GetGraph(&ch, "RateBoard1+RateBoard2+RateBoard3+RateBoard4+RateBoard5+RateBoard6 : Evt", c_base, kBlack);
 	TMultiGraph* multi1 = new TMultiGraph();
 	multi1->Add(gRateBoard1);
 	multi1->Add(gRateBoard2);
@@ -75,6 +76,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	multi1->Add(gRateBoard4);
 	multi1->Add(gRateBoard5);
 	multi1->Add(gRateBoard6);
+	multi1->Add(gRateBoardsRight);
 	multi1->Draw("apl");
 	c1->cd(2);
 	TGraph* gRateBoard7 = GetGraph(&ch, "RateBoard7 : Evt", c_base, kRed);
@@ -83,6 +85,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	TGraph* gRateBoard10 = GetGraph(&ch, "RateBoard10 : Evt", c_base, kMagenta);
 	TGraph* gRateBoard11 = GetGraph(&ch, "RateBoard11 : Evt", c_base, kYellow);
 	TGraph* gRateBoard12 = GetGraph(&ch, "RateBoard12 : Evt", c_base, kOrange);
+	TGraph* gRateBoardsLeft = GetGraph(&ch, "RateBoard7+RateBoard8+RateBoard9+RateBoard10+RateBoard11+RateBoard12 : Evt", c_base, kBlack);
 	TMultiGraph* multi2 = new TMultiGraph();
 	multi2->Add(gRateBoard7);
 	multi2->Add(gRateBoard8);
@@ -90,6 +93,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	multi2->Add(gRateBoard10);
 	multi2->Add(gRateBoard11);
 	multi2->Add(gRateBoard12);
+	multi2->Add(gRateBoardsLeft);
 	multi2->Draw("apl");
 	c1->cd(3);
 	TGraph* gRateLvsR1 = GetGraph(&ch, "RateLvsR1 : Evt", c_base, kRed);
@@ -188,7 +192,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	hCRT->Fit("gaus");
 	hCRT->SetStats(1);
 	c1->cd(15);  
-	ch.Draw("T30[0] - T30[1]>>hCRTcuts(200,-10,10)", c_base && c_noSat && c_energyWindow511);
+	ch.Draw("T30[0] - T30[1]>>hCRTcuts(200,-30,30)", c_base && c_noSat && c_energyWindow511);
 	TH1F* hCRTcuts = (TH1F*) gDirectory->Get("hCRTcuts");
 	hCRTcuts->Fit("gaus");
 	hCRTcuts->SetStats(1);
