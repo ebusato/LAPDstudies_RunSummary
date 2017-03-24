@@ -78,6 +78,7 @@ void summary(TString cut_base, TString fileName0, TString fileName1="", TString 
 	multi1->Add(gRateBoard6);
 	multi1->Add(gRateBoardsRight);
 	multi1->Draw("apl");
+	gPad->SaveAs("c1.png");
 	c1->cd(2);
 	TGraph* gRateBoard7 = GetGraph(&ch, "RateBoard7 : Evt", c_base, kRed);
 	TGraph* gRateBoard8 = GetGraph(&ch, "RateBoard8 : Evt", c_base, kGreen+3);
